@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <title>Covid19 Corona Tracker</title>
+  </head>
+  <body>
+    <div class="container">
+      <div
+        class="jumbotron border border-danger rounded bg-light text-center m-2"
+      >
+        <h1>Covid19 Stats: <%= countryName %></h1>
+        <img
+          src="https://www.sciencekids.co.nz/images/pictures/flags680/<%= countryName %>.jpg"
+          class="img-fluid"
+          style="width: 85px; height: 50px;"
+          alt="Responsive
+        image"
+        />
+      </div>
+      <div
+        class="jumbotron row border border-secondary rounded bg-light text-center m-2 mt-4"
+      >
+        <div class="col-sm-4">
+          <div>
+            <h4 class="text-danger"><%= TotalConfirmed %></h4>
+          </div>
+          <div>
+            <h6 class="text-secondary m-2">Confirmed</h6>
+          </div>
+          <div>
+            <h6 class="text-danger">+ <%= NewConfirmed %> new cases</h6>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div>
+            <h4 class="text-success"><%= TotalRecovered %></h4>
+          </div>
+          <div>
+            <h6 class="text-secondary m-2">Recovered</h6>
+          </div>
+          <div>
+            <h6 class="text-success">+ <%= NewRecovered %> recovered</h6>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div>
+            <h4 class="text-secondary"><%= TotalDeaths %></h4>
+          </div>
+          <div>
+            <h6 class="text-secondary m-2">Deaths</h6>
+          </div>
+          <div>
+            <h6 class="text-secondary">+ <%= NewDeaths %> deaths</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row m-2 mt-4">
+        <div
+          class="jumbotron col-sm-4 border border-success text-center rounded bg-light mt-4 mr-2"
+          style="height: 50px; padding-top: 20px;"
+        >
+          <% var x = Math.round(((TotalRecovered)/(TotalConfirmed))*100) %>
+          <h4>Recovery Rate: <%= x %> %</h4>
+        </div>
+        <div
+        class="jumbotron col-sm-4 border border-danger text-center rounded bg-light mt-4 mr-2"
+        style="height: 50px; padding-top: 20px;"
+      >
+        <% var x = Math.round(((TotalDeaths)/(TotalConfirmed))*100) %>
+        <h4>Fatality Rate: <%= x %> %</h4>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
