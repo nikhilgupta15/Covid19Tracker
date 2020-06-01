@@ -24,6 +24,11 @@
           alt="Responsive
         image"
         />
+        <% if(countryName === 'India'){ %>
+          <form action="country/region" method="GET"> 
+          <input class="btn btn-warning m-2" type="submit" value="Region Wise">
+        </form>
+          <% } %>
       </div>
       <div
         class="jumbotron row border border-secondary rounded bg-light text-center m-2 mt-4"

@@ -2,6 +2,7 @@ express = require("express");
 const router = express.Router();
 var fetch = require("node-fetch");
 const getCovidStats = require("../api");
+const getIndiaCovidStats = require("../apiIndia");
 
 router.post("/", async (req, res) => {
   try {
@@ -23,6 +24,17 @@ router.post("/", async (req, res) => {
         });
       })
       .catch((e) => console.log(e));
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.get("/region", async (req, res) => {
+  try {
+    const region = await getIndiaCovidStats();
+    region.json().then((data) => {
+      res.render("country/region", { region: data });
+    });
   } catch (e) {
     console.log(e);
   }
