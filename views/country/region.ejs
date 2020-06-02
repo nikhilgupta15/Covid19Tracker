@@ -22,6 +22,7 @@
             <th scope="col">Active Cases</th>
             <th scope="col">Recovered</th>
             <th scope="col">Deaths</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +35,13 @@
             <td class="text-danger"><%= value[i].active %></td>
             <td class="text-success"><%= value[i].cured %></td>
             <td class="text-secondary"><%= value[i].death %></td>
+            <td>
+              <a
+                href="/country/region/<%=value[i].name %>"
+                class="p-2 bg-success text-white"
+                >District wise</a
+              >
+            </td>
           </tr>
           <% } %> <% }%>
         </tbody>

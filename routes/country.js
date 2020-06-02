@@ -1,8 +1,12 @@
 express = require("express");
 const router = express.Router();
 var fetch = require("node-fetch");
+const { JSDOM } = require("jsdom");
+const { window } = new JSDOM("");
+const $ = require("jquery")(window);
 const getCovidStats = require("../api");
 const getIndiaCovidStats = require("../apiIndia");
+const DistrictWise = require("../apiDistrict");
 
 router.post("/", async (req, res) => {
   try {
@@ -37,6 +41,18 @@ router.get("/region", async (req, res) => {
     });
   } catch (e) {
     console.log(e);
+  }
+});
+
+router.get("/region/:id", async (req, res) => {
+  try {
+    var state = req.params.id;
+    const district = await DistrictWise();
+    district.json().then((data) => {
+      res.render("country/district", { district: data, state: state });
+    });
+  } catch (error) {
+    console.log(error);
   }
 });
 
