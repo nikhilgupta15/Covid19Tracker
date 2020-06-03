@@ -3,7 +3,7 @@ var fetch = require("node-fetch");
 const getIndiaCovidStats = async () => {
   try {
     const response = await fetch(
-      "http://covid19-india-adhikansh.herokuapp.com/states"
+      "https://covid-19india-api.herokuapp.com/v2.0/state_data"
     );
     return response;
   } catch (e) {

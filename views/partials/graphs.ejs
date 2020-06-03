@@ -1,0 +1,150 @@
+<canvas id="myChart" width="75px" height="75px"></canvas>
+<script>
+  $(document).ready(function () {
+    var $temp = $("h1").attr("id");
+
+    var today = new Date();
+    today.setDate(today.getDate() - 1);
+    if (today.getMonth() + 1 < 9 && today.getDate() < 9) {
+      var date =
+        today.getFullYear() +
+        "-0" +
+        (today.getMonth() + 1) +
+        "-0" +
+        today.getDate() +
+        "T00:00:00Z";
+    } else if (today.getMonth() + 1 < 9 && today.getDate() > 9) {
+      var date =
+        today.getFullYear() +
+        "-0" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate() +
+        "T00:00:00Z";
+    } else if (today.getMonth() + 1 > 9 && today.getDate() < 9) {
+      var date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-0" +
+        today.getDate() +
+        "T00:00:00Z";
+    } else {
+      var date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate() +
+        "T00:00:00Z";
+    }
+    console.log(date);
+
+    var today1 = new Date();
+    today1.setDate(today.getDate() - 8);
+    if (today1.getMonth() + 1 < 9 && today1.getDate() < 9) {
+      var date1 =
+        today1.getFullYear() +
+        "-0" +
+        (today1.getMonth() + 1) +
+        "-0" +
+        today1.getDate() +
+        "T00:00:00Z";
+    } else if (today1.getMonth() + 1 < 9 && today1.getDate() > 9) {
+      var date1 =
+        today1.getFullYear() +
+        "-0" +
+        (today1.getMonth() + 1) +
+        "-" +
+        today1.getDate() +
+        "T00:00:00Z";
+    } else if (today1.getMonth() + 1 > 9 && today1.getDate() < 9) {
+      var date1 =
+        today1.getFullYear() +
+        "-" +
+        (today1.getMonth() + 1) +
+        "-0" +
+        today1.getDate() +
+        "T00:00:00Z";
+    } else {
+      var date1 =
+        today1.getFullYear() +
+        "-" +
+        (today1.getMonth() + 1) +
+        "-" +
+        today1.getDate() +
+        "T00:00:00Z";
+    }
+    console.log(date1);
+
+    fetch(
+      `https://api.covid19api.com/country/${$temp}/status/confirmed?from=${date1}&to=${date}`
+    )
+      .then((response) => response.json())
+      .then((x) => {
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var myChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: [
+              x[1].Date.substring(0, 10),
+              x[2].Date.substring(0, 10),
+              x[3].Date.substring(0, 10),
+              x[4].Date.substring(0, 10),
+              x[5].Date.substring(0, 10),
+              x[6].Date.substring(0, 10),
+              x[7].Date.substring(0, 10),
+              x[8].Date.substring(0, 10),
+            ],
+            datasets: [
+              {
+                label: "# of Corona Cases",
+                data: [
+                  x[1].Cases - x[0].Cases,
+                  x[2].Cases - x[1].Cases,
+                  x[3].Cases - x[2].Cases,
+                  x[4].Cases - x[3].Cases,
+                  x[5].Cases - x[4].Cases,
+                  x[6].Cases - x[5].Cases,
+                  x[7].Cases - x[6].Cases,
+                  x[8].Cases - x[7].Cases,
+                ],
+                backgroundColor: [
+                  "rgba(255, 99, 132, 0.2)",
+                  "rgba(54, 162, 235, 0.2)",
+                  "rgba(255, 206, 86, 0.2)",
+                  "rgba(75, 192, 192, 0.2)",
+                  "rgba(153, 102, 255, 0.2)",
+                  "rgba(255, 159, 64, 0.2)",
+                  "rgba(255, 100, 64, 0.2)",
+                  "rgba(200, 159, 64, 0.2)",
+                ],
+                borderColor: [
+                  "rgba(255, 99, 132, 1)",
+                  "rgba(54, 162, 235, 1)",
+                  "rgba(255, 206, 86, 1)",
+                  "rgba(75, 192, 192, 1)",
+                  "rgba(153, 102, 255, 1)",
+                  "rgba(255, 159, 64, 1)",
+                  "rgba(255, 100, 64, 1)",
+                  "rgba(200, 159, 64, 1)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                },
+              ],
+            },
+          },
+        });
+      });
+  });
+</script>

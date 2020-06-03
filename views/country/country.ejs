@@ -9,6 +9,8 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <title>Covid19 Corona Tracker</title>
   </head>
   <body>
@@ -16,7 +18,7 @@
       <div
         class="jumbotron border border-danger rounded bg-light text-center m-2"
       >
-        <h1>Covid19 Stats: <%= countryName %></h1>
+        <h1 id="<%= countryName %>">Covid19 Stats: <%= countryName %></h1>
         <img
           src="https://www.sciencekids.co.nz/images/pictures/flags680/<%= countryName %>.jpg"
           class="img-fluid"
@@ -26,7 +28,7 @@
         />
         <% if(countryName === 'India'){ %>
           <form action="country/region" method="GET"> 
-          <input class="btn btn-warning m-2" type="submit" value="Region Wise">
+          <input class="btn btn-warning m-2" type="submit" value="State Wise">
         </form>
           <% } %>
       </div>
@@ -82,6 +84,7 @@
         <% var x = Math.round(((TotalDeaths)/(TotalConfirmed))*100) %>
         <h4>Fatality Rate: <%= x %> %</h4>
       </div>
+      <%- include('../partials/graphs.ejs') %>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

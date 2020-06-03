@@ -26,24 +26,25 @@
           </tr>
         </thead>
         <tbody>
-          <% const obj1 = Object.entries(region) %> <% for(const [key, value] of
-          obj1){ %> <% for( var i=0 ;i< 36;i++ ){ %>
+          <% const obj1 = Object.entries(region[1]) %> <% for(const [key, value]
+          of obj1){ %> <% if(key === 'state_data'){ %> <% for( var i=0 ;i<
+          37;i++ ){ %>
           <tr>
             <th scope="row"><%= i+1 %></th>
-            <td><%= value[i].name %></td>
-            <td><%= value[i].total %></td>
+            <td><%= value[i].state %></td>
+            <td><%= value[i].confirmed %></td>
             <td class="text-danger"><%= value[i].active %></td>
-            <td class="text-success"><%= value[i].cured %></td>
-            <td class="text-secondary"><%= value[i].death %></td>
+            <td class="text-success"><%= value[i].recovered %></td>
+            <td class="text-secondary"><%= value[i].deaths %></td>
             <td>
               <a
-                href="/country/region/<%=value[i].name %>"
+                href="/country/region/<%=value[i].state %>"
                 class="p-2 bg-success text-white"
                 >District wise</a
               >
             </td>
           </tr>
-          <% } %> <% }%>
+          <% } } %> <% }%>
         </tbody>
       </table>
     </div>
