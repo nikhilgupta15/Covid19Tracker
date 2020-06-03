@@ -18,7 +18,10 @@ router.get("/", async (req, res) => {
     country
       .json()
       .then((data) => {
-        res.render("index.ejs", { country: data.Countries });
+        res.render("index.ejs", {
+          country: data.Countries,
+          global: data.Global,
+        });
       })
       .catch((e) => console.log(e));
   } catch (e) {

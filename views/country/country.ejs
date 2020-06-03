@@ -16,26 +16,31 @@
   <body>
     <div class="container">
       <div
-        class="jumbotron border border-danger rounded bg-light text-center m-2"
+        class="row border border-secondary rounded bg-light text-center m-2"
       >
-        <h1 id="<%= countryName %>">Covid19 Stats: <%= countryName %></h1>
+        <div class="col-sm-2">
         <img
           src="https://www.sciencekids.co.nz/images/pictures/flags680/<%= countryName %>.jpg"
-          class="img-fluid"
-          style="width: 85px; height: 50px;"
-          alt="Responsive
-        image"
+          class="img-fluid m-3"
+          style="width: 70px; height: 30px;"
+          alt=" "
         />
-        <% if(countryName === 'India'){ %>
+        </div>
+        <div class="col-sm-7 mt-1">
+          <h1 id="<%= countryName %>">Covid19 Stats: <%= countryName %></h1>
+        </div>
+        <div class="col-sm-3">
+          <% if(countryName === 'India'){ %>
           <form action="country/region" method="GET"> 
-          <input class="btn btn-warning m-2" type="submit" value="State Wise">
-        </form>
+          <input class="btn btn-warning btn-lg m-2" type="submit" value="State Wise">
+          </form>
           <% } %>
+        </div>
       </div>
       <div
         class="jumbotron row border border-secondary rounded bg-light text-center m-2 mt-4"
       >
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div>
             <h4 class="text-danger"><%= TotalConfirmed %></h4>
           </div>
@@ -46,7 +51,7 @@
             <h6 class="text-danger">+ <%= NewConfirmed %> new cases</h6>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div>
             <h4 class="text-success"><%= TotalRecovered %></h4>
           </div>
@@ -57,7 +62,7 @@
             <h6 class="text-success">+ <%= NewRecovered %> recovered</h6>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div>
             <h4 class="text-secondary"><%= TotalDeaths %></h4>
           </div>
@@ -68,24 +73,21 @@
             <h6 class="text-secondary">+ <%= NewDeaths %> deaths</h6>
           </div>
         </div>
-      </div>
-      <div class="row m-2 mt-4">
-        <div
-          class="jumbotron col-sm-4 border border-success text-center rounded bg-light mt-4 mr-2"
-          style="height: 50px; padding-top: 20px;"
-        >
-          <% var x = Math.round(((TotalRecovered)/(TotalConfirmed))*100) %>
-          <h4>Recovery Rate: <%= x %> %</h4>
+        <div class="col-sm-3">
+          <div class="row">
+            <div>
+              <% var x = Math.round(((TotalRecovered)/(TotalConfirmed))*100) %>
+              <h5  class="text-success">Recovery Rate: <%= x %> %</h5>
+            </div>
+            <div>
+            <% var x = Math.round(((TotalDeaths)/(TotalConfirmed))*100) %>
+            <h5  class="text-danger">Fatality Rate: <%= x %> %</h5>
+          </div>
         </div>
-        <div
-        class="jumbotron col-sm-4 border border-danger text-center rounded bg-light mt-4 mr-2"
-        style="height: 50px; padding-top: 20px;"
-      >
-        <% var x = Math.round(((TotalDeaths)/(TotalConfirmed))*100) %>
-        <h4>Fatality Rate: <%= x %> %</h4>
       </div>
-      <%- include('../partials/graphs.ejs') %>
     </div>
+      <%- include('../partials/graphs.ejs') %>
+    
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
