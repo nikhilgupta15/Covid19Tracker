@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
         });
         res.render("country/country.ejs", {
           countryName: req.body.country,
+          countryCode: result.CountryCode,
           TotalConfirmed: result.TotalConfirmed,
           TotalDeaths: result.TotalDeaths,
           TotalRecovered: result.TotalRecovered,
