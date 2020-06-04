@@ -11,83 +11,106 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <title>Covid19 Corona Tracker</title>
+    <title>Covid19 Tracker</title>
   </head>
   <body>
-    <div class="container">
-      <div
-        class="row border border-secondary rounded bg-light text-center m-2"
-      >
-        <div class="col-sm-2">
+    <%- include('../partials/header.ejs') %>
+
+    <div class="row rounded bg-light text-center">
+      <div class="col-sm-2">
         <img
           src="https://www.sciencekids.co.nz/images/pictures/flags680/<%= countryName %>.jpg"
           class="img-fluid m-3"
           style="width: 70px; height: 30px;"
           alt=" "
         />
+      </div>
+      <div class="col-sm-7 mt-1">
+        <h1 id="<%= countryName %>">Covid19 Stats: <%= countryName %></h1>
+      </div>
+      <div class="col-sm-3">
+        <% if(countryName === 'India'){ %>
+        <form action="country/region" method="GET">
+          <input
+            class="btn btn-warning btn-lg m-2"
+            type="submit"
+            value="State Wise"
+          />
+        </form>
+        <% } %>
+      </div>
+    </div>
+    <div
+      class="jumbotron row border border-secondary rounded bg-light text-center m-2 mt-4"
+    >
+      <div class="col-sm-3">
+        <div>
+          <h4 class="text-danger"><%= TotalConfirmed %></h4>
         </div>
-        <div class="col-sm-7 mt-1">
-          <h1 id="<%= countryName %>">Covid19 Stats: <%= countryName %></h1>
+        <div>
+          <h6 class="text-secondary m-2">Confirmed</h6>
         </div>
-        <div class="col-sm-3">
-          <% if(countryName === 'India'){ %>
-          <form action="country/region" method="GET"> 
-          <input class="btn btn-warning btn-lg m-2" type="submit" value="State Wise">
-          </form>
-          <% } %>
+        <div>
+          <h6 class="text-danger">+ <%= NewConfirmed %> new cases</h6>
         </div>
       </div>
-      <div
-        class="jumbotron row border border-secondary rounded bg-light text-center m-2 mt-4"
-      >
-        <div class="col-sm-3">
-          <div>
-            <h4 class="text-danger"><%= TotalConfirmed %></h4>
-          </div>
-          <div>
-            <h6 class="text-secondary m-2">Confirmed</h6>
-          </div>
-          <div>
-            <h6 class="text-danger">+ <%= NewConfirmed %> new cases</h6>
-          </div>
+      <div class="col-sm-3">
+        <div>
+          <h4 class="text-success"><%= TotalRecovered %></h4>
         </div>
-        <div class="col-sm-3">
-          <div>
-            <h4 class="text-success"><%= TotalRecovered %></h4>
-          </div>
-          <div>
-            <h6 class="text-secondary m-2">Recovered</h6>
-          </div>
-          <div>
-            <h6 class="text-success">+ <%= NewRecovered %> recovered</h6>
-          </div>
+        <div>
+          <h6 class="text-secondary m-2">Recovered</h6>
         </div>
-        <div class="col-sm-3">
-          <div>
-            <h4 class="text-secondary"><%= TotalDeaths %></h4>
-          </div>
-          <div>
-            <h6 class="text-secondary m-2">Deaths</h6>
-          </div>
-          <div>
-            <h6 class="text-secondary">+ <%= NewDeaths %> deaths</h6>
-          </div>
+        <div>
+          <h6 class="text-success">+ <%= NewRecovered %> recovered</h6>
         </div>
-        <div class="col-sm-3">
-          <div class="row">
-            <div>
-              <% var x = Math.round(((TotalRecovered)/(TotalConfirmed))*100) %>
-              <h5  class="text-success">Recovery Rate: <%= x %> %</h5>
-            </div>
-            <div>
+      </div>
+      <div class="col-sm-3">
+        <div>
+          <h4 class="text-secondary"><%= TotalDeaths %></h4>
+        </div>
+        <div>
+          <h6 class="text-secondary m-2">Deaths</h6>
+        </div>
+        <div>
+          <h6 class="text-secondary">+ <%= NewDeaths %> deaths</h6>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="row">
+          <div>
+            <% var x = Math.round(((TotalRecovered)/(TotalConfirmed))*100) %>
+            <h5 class="text-success">Recovery Rate: <%= x %> %</h5>
+          </div>
+          <div>
             <% var x = Math.round(((TotalDeaths)/(TotalConfirmed))*100) %>
-            <h5  class="text-danger">Fatality Rate: <%= x %> %</h5>
+            <h5 class="text-danger">Fatality Rate: <%= x %> %</h5>
           </div>
         </div>
       </div>
     </div>
+    <div
+      id="chartContainer1"
+      style="width: 33%; height: 400px; display: inline-block;"
+      class="mt-2"
+    >
       <%- include('../partials/graphs.ejs') %>
-    
+    </div>
+    <div
+      id="chartContainer2"
+      style="width: 33%; height: 400px; display: inline-block;"
+      class="mt-2"
+    >
+      <%- include('../partials/graphsRecovered.ejs') %>
+    </div>
+    <div
+      id="chartContainer3"
+      style="width: 33%; height: 400px; display: inline-block;"
+      class="mt-2"
+    >
+      <%- include('../partials/graphsDeaths.ejs') %>
+    </div>
+
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -1,4 +1,4 @@
-<canvas id="myChart" width="200px" height="100px"></canvas>
+<canvas id="Charts" width="200px" height="100px"></canvas>
 <script>
   $(document).ready(function () {
     var $temp = $("h1").attr("id");
@@ -78,11 +78,11 @@
     console.log(date1);
 
     fetch(
-      `https://api.covid19api.com/country/${$temp}/status/confirmed?from=${date1}&to=${date}`
+      `https://api.covid19api.com/country/${$temp}/status/deaths?from=${date1}&to=${date}`
     )
       .then((response) => response.json())
       .then((x) => {
-        var ctx = document.getElementById("myChart").getContext("2d");
+        var ctx = document.getElementById("Charts").getContext("2d");
         var myChart = new Chart(ctx, {
           type: "line",
           data: {
@@ -98,7 +98,7 @@
             ],
             datasets: [
               {
-                label: "Confirmed Corona Cases",
+                label: "Deaths",
                 data: [
                   x[1].Cases - x[0].Cases,
                   x[2].Cases - x[1].Cases,
