@@ -5,7 +5,7 @@
 
     var today = new Date();
     today.setDate(today.getDate() - 1);
-    if (today.getMonth() + 1 < 9 && today.getDate() < 9) {
+    if (today.getMonth() + 1 <= 9 && today.getDate() <= 9) {
       var date =
         today.getFullYear() +
         "-0" +
@@ -13,7 +13,7 @@
         "-0" +
         today.getDate() +
         "T00:00:00Z";
-    } else if (today.getMonth() + 1 < 9 && today.getDate() > 9) {
+    } else if (today.getMonth() + 1 <= 9 && today.getDate() >= 9) {
       var date =
         today.getFullYear() +
         "-0" +
@@ -21,7 +21,7 @@
         "-" +
         today.getDate() +
         "T00:00:00Z";
-    } else if (today.getMonth() + 1 > 9 && today.getDate() < 9) {
+    } else if (today.getMonth() + 1 >= 9 && today.getDate() <= 9) {
       var date =
         today.getFullYear() +
         "-" +
@@ -42,7 +42,7 @@
 
     var today1 = new Date();
     today1.setDate(today.getDate() - 8);
-    if (today1.getMonth() + 1 < 9 && today1.getDate() < 9) {
+    if (today1.getMonth() + 1 <= 9 && today1.getDate() <= 9) {
       var date1 =
         today1.getFullYear() +
         "-0" +
@@ -50,7 +50,7 @@
         "-0" +
         today1.getDate() +
         "T00:00:00Z";
-    } else if (today1.getMonth() + 1 < 9 && today1.getDate() > 9) {
+    } else if (today1.getMonth() + 1 <= 9 && today1.getDate() >= 9) {
       var date1 =
         today1.getFullYear() +
         "-0" +
@@ -58,7 +58,7 @@
         "-" +
         today1.getDate() +
         "T00:00:00Z";
-    } else if (today1.getMonth() + 1 > 9 && today1.getDate() < 9) {
+    } else if (today1.getMonth() + 1 >= 9 && today1.getDate() <= 9) {
       var date1 =
         today1.getFullYear() +
         "-" +
